@@ -1,0 +1,33 @@
+
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "{{appname}}"
+  namespace: "{{namespace}}"
+  labels:
+    team: personoversikt
+spec:
+  image: "{{image}}"
+  port: 8080
+  liveness:
+    path: /deploytest2/internal/isAlive
+    initialDelay: 50
+    timeout: 1
+    periodSeconds: 5
+    failureThreshold: 10
+  readiness:
+    path: /deploytest2/internal/isReady
+    initialDelay: 50
+    timeout: 1
+  resources:
+    requests:
+      cpu: 200m
+      memory: 164Mi
+    limits:
+      cpu: 600m
+      memory: 312Mi
+  ingresses:
+    - https://app-q1.adeo.no/deploytest2
+  replicas:
+    min: 1
+    max: 1
