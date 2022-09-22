@@ -2,8 +2,8 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "{{appname}}"
-  namespace: "{{namespace}}"
+  name: deploytest2
+  namespace: personoversikt
   labels:
     team: personoversikt
 spec:
