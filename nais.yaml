@@ -11,14 +11,14 @@ spec:
   port: 8080
   liveness:
     path: /deploytest2/internal/isAlive
-    initialDelay: 50
-    timeout: 1
+    initialDelay: 10
     periodSeconds: 5
-    failureThreshold: 10
+    failureThreshold: 5
   readiness:
     path: /deploytest2/internal/isReady
-    initialDelay: 50
-    timeout: 1
+    initialDelay: 30
+    periodSeconds: 5
+    failureThreshold: 5
   resources:
     requests:
       cpu: 200m
@@ -29,5 +29,8 @@ spec:
   ingresses:
     - https://app-q1.adeo.no/deploytest2
   replicas:
-    min: 1
-    max: 1
+    min: 4
+    max: 4
+  env:
+    - name: RND_FILE_NAME
+      value: "{{ RND_FILE_NAME }}"
